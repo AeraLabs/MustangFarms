@@ -22,6 +22,13 @@ const server=http.createServer((req,res)=>{
     await page.evaluate(()=>document.fonts.ready);
     await page.evaluate(async()=>{await Promise.all([...document.images].map(img=>{img.loading="eager";return img.decode();}));});
     assert.equal(await page.locator('.product-card').count(),8);
+    // Farm-practice reminders and Idaho identity must remain visible and accessible.
+    assert.equal(await page.locator('.garden-promise').count(),2);
+    assert.equal(await page.locator('.story-garden-note').count(),1);
+    assert.match(await page.locator('.garden-promise-hero').innerText(),/No pesticides used/);
+    assert.match(await page.locator('.garden-promise-harvest').innerText(),/organically grown/);
+    assert.equal(await page.locator('.idaho-origin-card img').getAttribute('src'),'./assets/idaho-outline.svg');
+    assert.match(await page.locator('.idaho-origin-card img').getAttribute('alt'),/Meridian/);
     // The truck must roll across the farm scene without a bounce, at desktop and mobile scales.
     assert.equal(await page.locator('.farm-truck-svg .truck-wheel').count(),2);
     await page.emulateMedia({reducedMotion:'no-preference'});

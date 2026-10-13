@@ -11,6 +11,7 @@ A playful, responsive homestead website and pickup-order **front-end demonstrati
 - A simple Farmer's Desk with easy-to-read inventory, add/edit/remove products, stock +/- controls, and an order board
 - Order stages: **New → Preparing → Ready for pickup → Completed**
 - Placeholder logo, product art, farm illustration, sample produce, and sample pricing ready to replace with approved branding, photos, and actual inventory
+- Warm, understated reminders of the farm's stated organically grown/no-pesticide practices (hero, harvest and Ed's story), plus a lightweight embossed Idaho vector with a Meridian location marker
 
 ## Important: this is not a live ordering site yet
 
@@ -23,6 +24,7 @@ A playful, responsive homestead website and pickup-order **front-end demonstrati
 - **Use sample information**, not actual customer contact information, while testing.
 - The street address is intentionally not displayed publicly until pickup details are verified.
 - Products, availability, prices, and pickup windows are **illustrative sample content**, not statements about the farm's actual stock.
+- **Before going live:** Ed must verify the claims about organically grown produce and no pesticides being used. "Organic" is a regulated term in the U.S. Depending on annual organic sales and compliance with USDA production/recordkeeping requirements, certification or a qualifying small-producer exemption may apply. We do not claim USDA certification or display an organic certification seal. See: https://www.ams.usda.gov/services/organic-certification/need-be-certified
 
 ## Preview locally
 
