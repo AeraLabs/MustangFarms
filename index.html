@@ -10,9 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,25,1;9..144,600,25,1;9..144,700,25,1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./homestead.css" />
   <script src="./app.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#harvest">Skip to the harvest</a>
   <div class="announcement"><span class="announcement-sun">✳</span> Grown with care in Meridian, Idaho <span class="announcement-sun">✳</span> Small farm, big heart</div>
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="Mustang Farms home" id="home-link">
@@ -20,7 +22,7 @@
       <span class="brand-name">MUSTANG <small>FARMS</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#harvest">The harvest</a><a href="#our-story">Our story</a><a href="#how-it-works">How it works</a>
+      <a href="#harvest">The harvest</a><a href="#our-story">Meet Ed</a><a href="#how-it-works">How it works</a>
     </nav>
     <div class="header-actions">
       <button type="button" class="admin-link" id="admin-entry">Farmer's desk <span aria-hidden="true">↗</span></button>
@@ -29,35 +31,47 @@
   </header>
 
   <main id="storefront">
+    <div class="preview-note"><span>THE FARMSTAND PREVIEW</span> Take a look around. Products and orders are examples for now.</div>
     <section class="hero">
       <div class="hero-grain" aria-hidden="true"></div>
       <div class="hero-copy">
         <div class="hero-kicker"><span class="live-dot"></span> FROM OUR LITTLE CORNER OF IDAHO</div>
         <h1>Good things<br/><em>grow here.</em></h1>
-        <p>Real food. Good soil. A whole lot of heart. Fresh-picked goodness from Ed's garden to your kitchen table.</p>
-        <div class="hero-actions"><a class="button button-cream" href="#harvest">Explore the harvest <span aria-hidden="true">↗</span></a><a href="#our-story" class="text-link">Meet the farmer <span aria-hidden="true">→</span></a></div>
-        <div class="hero-footer"><span class="hero-footer-icon">✻</span><span>LOCALLY GROWN<br/><strong>MERIDIAN, IDAHO</strong></span><span class="hero-footer-line"></span><span class="hero-footer-icon">☼</span><span>FRESH & SEASONAL<br/><strong>PICKUP REQUESTS</strong></span></div>
+        <p>A little patch of Idaho. A farmer with a big heart.<br/>And good food that brings us back to the table.</p>
+        <div class="hero-actions"><a class="button button-cream" href="#harvest">Shop the harvest <span aria-hidden="true">↗</span></a><a href="#our-story" class="text-link">Meet the farmer <span aria-hidden="true">→</span></a></div>
+        <div class="hero-footer"><span class="hero-footer-icon">✻</span><span>LOCALLY GROWN<br/><strong>MERIDIAN, IDAHO</strong></span><span class="hero-footer-line"></span><span class="hero-footer-icon">☼</span><span>FRESH & SEASONAL<br/><strong>FROM FARM TO TABLE</strong></span></div>
       </div>
-      <div class="hero-scene" aria-label="Playful illustration of vegetables and fruit">
-        <div class="scene-orbit orbit-one"></div><div class="scene-orbit orbit-two"></div>
-        <span class="scene-label scene-label-top">JUST PICKED ✽</span>
-        <span class="veg veg-tomato" aria-hidden="true">🍅</span><span class="veg veg-carrot" aria-hidden="true">🥕</span><span class="veg veg-corn" aria-hidden="true">🌽</span><span class="veg veg-lettuce" aria-hidden="true">🥬</span><span class="veg veg-apple" aria-hidden="true">🍎</span><span class="veg veg-pepper" aria-hidden="true">🫑</span>
-        <div class="scene-middle"><span class="scene-middle-star">✷</span><span>GOOD<br/>FOOD</span><small>GROWN HERE</small></div>
-        <span class="scene-label scene-label-bottom">FARM FRESH, ALWAYS</span>
-        <span class="scene-spark spark-a">✳</span><span class="scene-spark spark-b">✷</span><span class="scene-spark spark-c">✦</span>
+      <div class="hero-scene" aria-label="Illustrated basket of garden vegetables in the Idaho countryside">
+        <div class="harvest-art"><img src="./assets/harvest-basket.svg" alt="An illustrated wicker basket filled with tomatoes, carrots, corn and leafy greens" width="700" height="700" fetchpriority="high" /></div>
+        <div class="harvest-seal">SMALL FARM<span>Big heart.</span>MERIDIAN, IDAHO</div>
+        <div class="field-note"><span>01 / THE GOOD STUFF</span><p>A little dirt.<br/>A lot of goodness.</p></div>
       </div>
-      <div class="hero-farm-motion" aria-hidden="true"><span class="farm-cloud cloud-a"></span><span class="farm-cloud cloud-b"></span><span class="farm-sun">☀</span><span class="little-chicken chicken-a">🐔</span><span class="little-chicken chicken-b">🐥</span><span class="little-chicken chicken-c">🐓</span></div>
+      <div class="hero-farm-motion" aria-hidden="true"><span class="farm-cloud cloud-a"></span><span class="farm-cloud cloud-b"></span><span class="farm-sun">☀</span><span class="little-chicken chicken-a"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span><span class="little-chicken chicken-b"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span><span class="little-chicken chicken-c"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span></div>
       <div class="hero-bottom-wave" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 45 C260 110 510 15 800 55 S1250 105 1440 36 V100 H0Z" fill="#f8f5e9"/></svg></div>
     </section>
 
     <div class="harvest-ribbon" aria-hidden="true"><div class="ribbon-track"><span>FRESH FROM THE GARDEN ✳ GROWN WITH LOVE ✳ STRAIGHT FROM THE SOIL ✳ SMALL FARM GOODNESS ✳ FRESH FROM THE GARDEN ✳ GROWN WITH LOVE ✳ STRAIGHT FROM THE SOIL ✳ SMALL FARM GOODNESS ✳</span></div></div>
+
+    <section class="shop-section" id="harvest">
+      <div class="section-container">
+        <div class="section-heading">
+          <div><span class="eyebrow"><span class="eyebrow-star">✳</span> FRESH PICKINGS</span><h2>This week's <em>harvest.</em></h2><p>See what Ed's growing. Our harvest changes with the seasons and the weather.</p></div>
+          <div class="harvest-aside"><span class="harvest-mini-sun">☀</span><span>FRESH PICKS<br/><strong>FROM OUR FARM</strong></span></div>
+        </div>
+        <div class="market-toolbar"><label class="produce-search"><span>Find your favorites</span><input id="produce-search" type="search" placeholder="Search the harvest…" autocomplete="off" /></label><label class="stock-toggle"><input id="available-only" type="checkbox" /> In stock only</label></div>
+        <div class="filter-bar" aria-label="Filter produce"><button class="filter-chip active" data-filter="All">Everything</button><button class="filter-chip" data-filter="Vegetables">Vegetables</button><button class="filter-chip" data-filter="Fruit">Fruit</button><button class="filter-chip" data-filter="Herbs">Herbs & more</button></div>
+        <p class="results-count" id="results-count" role="status"></p>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="harvest-note"><span aria-hidden="true">✳</span> Grown by nature, not by a schedule. Availability and pricing shown here are sample content while this site is being built.</p>
+      </div>
+    </section>
 
     <section class="farm-drive" aria-label="Animated homestead welcome scene">
       <div class="drive-sky" aria-hidden="true"><span class="drive-cloud cloud-1"></span><span class="drive-cloud cloud-2"></span><span class="drive-sun">☼</span></div>
       <div class="drive-background" aria-hidden="true"><span class="drive-barn">⌂</span><span class="drive-fence"></span></div>
       <div class="drive-road" aria-hidden="true"></div>
       <div class="truck-runway" aria-hidden="true"><div class="vintage-truck"><svg class="farm-truck-svg" viewBox="0 0 360 174" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="175" cy="151" rx="155" ry="12" fill="#214b36" opacity=".14"/><path d="M39 89H203L232 43H289Q305 43 314 61L334 99V139H23V108Q23 89 39 89Z" fill="#BB3428" stroke="#802419" stroke-width="5" stroke-linejoin="round"/><path d="M227 88L248 54H286Q298 54 304 69L313 89Z" fill="#D9F3EE" stroke="#802419" stroke-width="4"/><path d="M262 55V89" stroke="#802419" stroke-width="4"/><rect x="38" y="98" width="170" height="42" rx="8" fill="#D64D36"/><path d="M38 117H205" stroke="#F2A96F" stroke-width="4"/><rect x="26" y="113" width="13" height="17" rx="3" fill="#FFD990"/><rect x="323" y="105" width="13" height="17" rx="4" fill="#FFDEA2"/><path d="M217 93V137" stroke="#802419" stroke-width="3"/><path d="M298 98H310" stroke="#FFD6A2" stroke-width="4" stroke-linecap="round"/><circle class="truck-wheel" cx="87" cy="139" r="29" fill="#23392D" stroke="#18271F" stroke-width="6"/><circle class="truck-wheel" cx="87" cy="139" r="14" fill="#E8DCC5"/><circle class="truck-wheel" cx="280" cy="139" r="29" fill="#23392D" stroke="#18271F" stroke-width="6"/><circle class="truck-wheel" cx="280" cy="139" r="14" fill="#E8DCC5"/><rect x="37" y="79" width="164" height="12" rx="5" fill="#99502F"/><path d="M47 76L58 59L72 75L87 58L101 75L119 55L135 75L150 55L168 75L183 58L193 77Z" fill="#4C9850"/><path d="M45 72Q90 38 135 72T202 70" stroke="#6EA75B" stroke-width="8" stroke-linecap="round"/><text x="122" y="116" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="19" fill="#FFF3DC">Mustang</text><text x="122" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" letter-spacing="3" font-size="11" fill="#FFF3DC">FARMS</text></svg></div></div>
-      <span class="road-chicken road-chicken-one" aria-hidden="true">🐔</span><span class="road-chicken road-chicken-two" aria-hidden="true">🐥</span>
+      <span class="road-chicken road-chicken-one" aria-hidden="true"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span><span class="road-chicken road-chicken-two" aria-hidden="true"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span>
       <div class="drive-title"><span>✳ FRESH FROM THE HOMESTEAD ✳</span><strong>Good food. Great neighbors.</strong></div>
     </section>
 
@@ -67,26 +81,14 @@
       <div class="welcome-bottom"><p>We believe the best meals start close to home. Everything in our little harvest is grown with patience, curiosity, and genuine care.</p><div class="welcome-stamp" aria-label="Rooted in Idaho"><span>ROOTED IN</span><strong>IDAHO</strong><span>✳ SINCE DAY ONE ✳</span></div></div>
     </section>
 
-    <section class="shop-section" id="harvest">
-      <div class="section-container">
-        <div class="section-heading">
-          <div><span class="eyebrow"><span class="eyebrow-star">✳</span> FRESH PICKINGS</span><h2>This week's <em>harvest.</em></h2><p>See what Ed's growing. Our harvest changes with the seasons and the weather.</p></div>
-          <div class="harvest-aside"><span class="harvest-mini-sun">☀</span><span>FRESH PICKS<br/><strong>FROM OUR FARM</strong></span></div>
-        </div>
-        <div class="filter-bar" aria-label="Filter produce"><button class="filter-chip active" data-filter="All">Everything</button><button class="filter-chip" data-filter="Vegetables">Vegetables</button><button class="filter-chip" data-filter="Fruit">Fruit</button><button class="filter-chip" data-filter="Herbs">Herbs & more</button></div>
-        <div class="product-grid" id="product-grid" aria-live="polite"></div>
-        <p class="harvest-note"><span aria-hidden="true">✳</span> Grown by nature, not by a schedule. Availability and pricing shown here are sample content while this site is being built.</p>
-      </div>
-    </section>
-
     <section class="story-section" id="our-story">
       <div class="section-container story-layout">
         <div class="story-art story-photo-scene">
           <div class="photo-glow" aria-hidden="true"></div>
-          <div class="ed-photo-mat"><img src="./assets/ed-sperry.webp" alt="Ed Sperry, founder of Mustang Farms" width="580" height="609" loading="lazy" decoding="async" /></div>
+          <div class="ed-photo-mat"><div class="portrait-placeholder"><span class="portrait-monogram">ES</span><strong>Ed Sperry</strong><small>FARMER &amp; FOUNDER</small><span class="portrait-caption">Portrait coming soon</span></div></div>
           <div class="ed-photo-ribbon">MEET THE FARMER <span>✳</span> ED SPERRY</div>
-          <span class="ed-photo-bloom bloom-a" aria-hidden="true">🌻</span><span class="ed-photo-bloom bloom-b" aria-hidden="true">🌿</span>
-          <span class="ed-photo-chicken chick-photo" aria-hidden="true">🐓</span>
+          <span class="ed-photo-bloom bloom-a" aria-hidden="true"><img src="./assets/basil.svg" alt="" width="90" height="90" /></span><span class="ed-photo-bloom bloom-b" aria-hidden="true"><img src="./assets/basil.svg" alt="" width="90" height="90" /></span>
+          <span class="ed-photo-chicken chick-photo" aria-hidden="true"><img src="./assets/chicken.svg" alt="" width="80" height="80" /></span>
         </div>
         <div class="story-copy">
           <span class="eyebrow eyebrow-gold"><span class="eyebrow-star">✳</span> GET TO KNOW US</span>
@@ -101,28 +103,29 @@
     <section class="steps-section section-container" id="how-it-works">
       <div class="steps-heading"><span class="eyebrow"><span class="eyebrow-star">✳</span> EASY AS PIE</span><h2>From our garden<br/><em>to your table.</em></h2></div>
       <div class="steps-grid">
-        <article class="step"><span class="step-no">01 /</span><div class="step-icon">🌽</div><h3>See what's growing</h3><p>Browse what we've got fresh and ready. A small harvest means something new all the time.</p></article>
-        <article class="step"><span class="step-no">02 /</span><div class="step-icon">🧺</div><h3>Fill your basket</h3><p>Pick your favorites and send a pickup request. No online payment needed.</p></article>
-        <article class="step"><span class="step-no">03 /</span><div class="step-icon">🚜</div><h3>Pick up the good stuff</h3><p>Once pickup is confirmed, come by and collect some goodness grown right here in Meridian.</p></article>
+        <article class="step"><span class="step-no">01 /</span><div class="step-icon"><img src="./assets/corn.svg" alt="" width="72" height="72" /></div><h3>See what's growing</h3><p>Browse what we've got fresh and ready. A small harvest means something new all the time.</p></article>
+        <article class="step"><span class="step-no">02 /</span><div class="step-icon"><img src="./assets/harvest-basket.svg" alt="" width="72" height="72" /></div><h3>Fill your basket</h3><p>Pick your favorites and send a pickup request. No online payment needed.</p></article>
+        <article class="step"><span class="step-no">03 /</span><div class="step-icon"><img src="./assets/carrot.svg" alt="" width="72" height="72" /></div><h3>Pick up the good stuff</h3><p>Once pickup is confirmed, come by and collect some goodness grown right here in Meridian.</p></article>
       </div>
     </section>
 
-    <section class="cta-section"><div class="cta-decor decor-left" aria-hidden="true">🥕</div><div class="cta-decor decor-right" aria-hidden="true">🍎</div><span class="eyebrow"><span class="eyebrow-star">✳</span> THERE'S MORE IN THE GARDEN</span><h2>Let's eat <em>local.</em></h2><p>Good food, good neighbors, and a fresh start every season.</p><a href="#harvest" class="button button-forest">Browse the harvest <span aria-hidden="true">↗</span></a></section>
+    <section class="faq-section section-container" aria-labelledby="faq-title"><div><span class="eyebrow">A FEW GOOD THINGS TO KNOW</span><h2 id="faq-title">Before you<br/><em>fill your basket.</em></h2></div><div class="faq-list"><details><summary>Can I place a real order yet?</summary><p>Not just yet. This is a preview of the farmstand. You can try a test pickup request with sample details and see it appear at the Farmer's Desk in this tab. It won't be sent to Ed.</p></details><details><summary>Where is the farm?</summary><p>Mustang Farms is in Meridian, Idaho. Confirmed pickup directions and hours will be added before real orders open.</p></details><details><summary>What's available each season?</summary><p>A small garden changes with the weather and the season. The produce and prices here are examples. Ed's actual harvest will be listed when the farmstand opens.</p></details><details><summary>Do I pay online?</summary><p>No payment is collected in this preview. Payment and pickup arrangements will be confirmed before the farmstand opens for real orders.</p></details></div></section>
+    <section class="cta-section"><div class="cta-decor decor-left" aria-hidden="true"><img src="./assets/carrot.svg" alt="" width="160" height="160" /></div><div class="cta-decor decor-right" aria-hidden="true"><img src="./assets/apple.svg" alt="" width="160" height="160" /></div><span class="eyebrow"><span class="eyebrow-star">✳</span> THERE'S MORE IN THE GARDEN</span><h2>Let's eat <em>local.</em></h2><p>Good food, good neighbors, and a fresh start every season.</p><a href="#harvest" class="button button-forest">Browse the harvest <span aria-hidden="true">↗</span></a></section>
   </main>
 
   <section class="admin-view" id="admin-view" hidden aria-labelledby="admin-title">
     <div class="admin-banner"><strong>PREVIEW MODE</strong> This dashboard is an interactive demo. Changes and test orders disappear when the page reloads. No actual customer orders are collected.</div>
     <div class="admin-wrap">
-      <div class="admin-top"><div class="admin-greeting"><span class="eyebrow"><span class="eyebrow-star">✳</span> THE FARMER'S DESK</span><h1 id="admin-title">Good morning, Ed! <span aria-hidden="true">☀</span></h1><p>Everything you need to keep the harvest running.</p></div><button id="back-to-shop" class="button button-outline" type="button">← Back to website</button></div>
+      <div class="admin-top"><div class="admin-greeting"><span class="eyebrow"><span class="eyebrow-star">✳</span> THE FARMER'S DESK</span><h1 id="admin-title" tabindex="-1">Welcome back, Ed! <span aria-hidden="true">☀</span></h1><p>Everything you need to keep the harvest running.</p></div><button id="back-to-shop" class="button button-outline" type="button">← Back to website</button></div>
       <div class="admin-stats"><div class="stat-card"><span>New orders</span><strong id="stat-new">0</strong><small>Waiting for your review</small></div><div class="stat-card"><span>Produce available</span><strong id="stat-products">0</strong><small>Items visible in the shop</small></div><div class="stat-card"><span>Ready for pickup</span><strong id="stat-ready">0</strong><small>Orders packed and ready</small></div></div>
       <div class="admin-tabs" role="tablist" aria-label="Admin sections"><button class="admin-tab selected" id="tab-inventory" type="button" role="tab" aria-controls="inventory-panel" aria-selected="true" data-admin-tab="inventory">🥕 My produce</button><button class="admin-tab" id="tab-orders" type="button" role="tab" aria-controls="orders-panel" aria-selected="false" data-admin-tab="orders">🧺 Customer orders <span id="tab-order-badge" class="admin-tab-badge" hidden>0</span></button></div>
       <section class="admin-panel" id="inventory-panel" role="tabpanel" aria-labelledby="tab-inventory"><div class="panel-heading"><div><h2>What's in the garden?</h2><p>Add produce, update prices, or change what's in stock.</p></div><button type="button" class="button button-forest admin-add" id="add-product">+ Add produce</button></div><div class="inventory-list" id="inventory-list"></div></section>
-      <section class="admin-panel" id="orders-panel" role="tabpanel" aria-labelledby="tab-orders" hidden><div class="panel-heading"><div><h2>Customer orders</h2><p>Every test order appears here automatically. Tap a button to move it along.</p></div></div><div id="order-list" class="order-list"></div></section>
+      <section class="admin-panel" id="orders-panel" role="tabpanel" aria-labelledby="tab-orders" hidden><div class="panel-heading"><div><h2>Customer orders</h2><p>Every test order appears here automatically. Tap a button to move it along.</p></div></div><label class="order-filter">Show orders<select id="order-filter"><option value="all">All orders</option><option value="new">New — needs attention</option><option value="preparing">Preparing</option><option value="ready">Ready for pickup</option><option value="completed">Completed</option></select></label><div id="order-list" class="order-list"></div></section>
       <p class="admin-footnote">Made to be simple, with big buttons and no complicated menus. Live login and saved records will be connected in a later phase.</p>
     </div>
   </section>
 
-  <footer class="site-footer" id="site-footer"><div class="section-container"><div class="footer-top"><div><a class="footer-logo" href="#top">MUSTANG <span>FARMS ✳</span></a><p>A little patch of land. A whole lot of love.<br/>Meridian, Idaho.</p></div><div class="footer-links"><a href="#harvest">Shop the harvest</a><a href="#our-story">Meet Ed</a><a href="#how-it-works">How it works</a><button id="footer-admin" type="button">Farmer's desk ↗</button></div></div><div class="footer-bottom"><span>© <span id="year"></span> Mustang Farms. Grown with care.</span><span>BRAND IDENTITY & PHOTOS COMING SOON</span><span>✳ ROOTED IN IDAHO</span></div></div></footer>
+  <footer class="site-footer" id="site-footer"><div class="section-container"><div class="footer-top"><div><a class="footer-logo" href="#top">MUSTANG <span>FARMS ✳</span></a><p>A little patch of land. A whole lot of love.<br/>Meridian, Idaho.</p></div><div class="footer-links"><a href="#harvest">Shop the harvest</a><a href="#our-story">Meet Ed</a><a href="#how-it-works">How it works</a><button id="footer-admin" type="button">Farmer's desk ↗</button></div></div><div class="footer-bottom"><span>© <span id="year"></span> Mustang Farms. Grown with care.</span><button type="button" id="motion-toggle" aria-pressed="false">Pause animations</button><span>✳ ROOTED IN IDAHO</span></div></div></footer>
 
   <div class="overlay" id="cart-overlay" hidden><button class="overlay-scrim" data-close-cart aria-label="Close basket" type="button"></button><aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title"><div class="drawer-heading"><div><span class="eyebrow">FARM FRESH GOODNESS</span><h2 id="cart-title">Your basket <span>🧺</span></h2></div><button class="icon-close" type="button" data-close-cart aria-label="Close basket">×</button></div><div class="cart-body" id="cart-body"></div></aside></div>
 
@@ -130,6 +133,7 @@
 
   <dialog class="farm-dialog login-dialog" id="login-dialog" aria-labelledby="login-title"><div class="dialog-heading"><div><span class="eyebrow">OWNER ACCESS</span><h2 id="login-title">Welcome to the<br/>Farmer's Desk.</h2></div><button type="button" class="icon-close" id="close-login" aria-label="Close">×</button></div><div class="login-art">🌻 <span>Howdy, Ed!</span> 🥕</div><p>This is a preview of Ed's future admin dashboard. Secure sign-in isn't connected yet, so anyone viewing this demo can open it.</p><button class="button button-forest wide-button" id="enter-admin" type="button">Open the demo dashboard →</button><small>DEMO ONLY · NOT A SECURE LOGIN</small></dialog>
 
+  <button class="basket-summary" id="basket-summary" type="button" hidden><span>View your basket <b id="basket-summary-count"></b></span><strong id="basket-summary-total"></strong><span aria-hidden="true">→</span></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
