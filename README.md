@@ -1,7 +1,65 @@
-# Mustang Farms
+# Mustang Farms — Farm-Fresh Storefront (Prototype)
 
-A farm-fresh storefront and future pickup-order portal for Ed Sperry in Meridian, Idaho.
+A playful, responsive homestead website and pickup-order **front-end demonstration** for Ed Sperry in Meridian, Idaho.
 
-> Initial site is an interactive front-end prototype. No persistent storage, real authentication, or live order processing is connected.
+## What this build includes
 
-Built in a separate development branch for review before merging.
+- Farm-fresh landing page with animated fruit and vegetables, micro-interactions, accessible reduced-motion support, and mobile layouts
+- Ed's story: 22 years in the military, a new venture in farming, and learning the craft through YouTube
+- A harvest catalog with categories, sample prices, sample stock, and one-tap add-to-basket buttons
+- A basket with quantity controls, estimated total, and a **test pickup-request form**
+- A simple Farmer's Desk with easy-to-read inventory, add/edit/remove products, stock +/- controls, and an order board
+- Order stages: **New → Preparing → Ready for pickup → Completed**
+- Placeholder logo, product art, farm illustration, sample produce, and sample pricing ready to replace with approved branding, photos, and actual inventory
+
+## Important: this is not a live ordering site yet
+
+**You asked to skip storage for now.** Everything lives in JavaScript memory in a single browser tab. Refreshing the page resets all products, cart items, and orders to their example starting state. Different visitors and browser tabs do **not** share inventory or orders.
+
+- **No database or persistent storage:** No Supabase, cookies, localStorage, or backend.
+- **No real login:** The Farmer's Desk entry is labeled as an openly accessible demo preview. Do not use it to manage real orders.
+- **No live order delivery:** Test pickup requests are visible only on the same page. They are **not** sent by SMS, email, or to Ed.
+- **No payment processing.**
+- **Use sample information**, not actual customer contact information, while testing.
+- The street address is intentionally not displayed publicly until pickup details are verified.
+- Products, availability, prices, and pickup windows are **illustrative sample content**, not statements about the farm's actual stock.
+
+## Preview locally
+
+There are **no dependencies, build steps, accounts, or environment variables**. Clone/download the repository and open \`index.html\` in a browser, or serve the project folder using any static server. GitHub Pages or another static host can also host this demo once configured.
+
+If you want to try a local server and have Python installed:
+
+\`\`\`bash
+python3 -m http.server 8000
+\`\`\`
+
+Then open \`http://localhost:8000\`.
+
+## Try the complete demo workflow
+
+1. On the website, add a few sample items using the **+** buttons.
+2. Open **Basket**. Adjust the quantities.
+3. Fill the pickup form with **test-only** details, then select **Place TEST pickup request**.
+4. Open **Farmer's desk** in the header or footer and select **Open the demo dashboard**. This is a preview, not authentication.
+5. Select **Customer orders**. The test order appears with a status of **New**.
+6. Tap **Start preparing**, then **Mark ready for pickup**, then **Mark picked up**.
+7. Go to **My produce** to change stock or add/edit a product, then return to the website to see it update immediately.
+8. Refresh the page and notice that everything resets.
+
+## Files
+
+| File | Purpose |
+| --- | --- |
+| \`index.html\` | Storefront, cart, Farmer's Desk, and edit dialogs |
+| \`styles.css\` | Responsive farm identity, transitions, animations, large admin controls |
+| \`app.js\` | In-memory harvest, basket, fake pickup requests, and admin dashboard |
+
+## Future phases (not built yet)
+
+1. Review the visual direction with Ed; add farm photography, a real logo, actual produce, correct pricing, and approved pickup instructions.
+2. Add real secure owner authentication and a persistence layer with strict access controls.
+3. Replace test checkout with actual pickup-request processing and owner notifications.
+4. Validate inventory reservation logic, customer privacy, cancellation/refund rules (if payments are added), spam defenses, and production accessibility.
+
+**Safety before launch:** Do not invite real customers to place orders through this demo. Deploy it only as a labeled prototype until authentication, shared inventory, and order delivery are implemented.
