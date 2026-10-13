@@ -26,11 +26,11 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 /* Friendly farm practices and an embossed Idaho origin card. No certification seal implied. */
 .garden-promise{display:flex;align-items:center;gap:10px;color:#526343;font-size:13px;line-height:1.6;letter-spacing:0}
 .garden-promise .promise-sprig{color:#a26c3e;font-size:18px;line-height:1;flex:none}
-.hero-copy>.garden-promise-hero{display:inline-flex;flex-wrap:wrap;gap:8px;margin:19px 0 0;padding:9px 13px;border:1px solid #d7d8bb;border-radius:99px;background:#f0eedc;color:#49603c;font-size:12px;font-weight:700;max-width:100%;line-height:1.35}
+
 .garden-promise-harvest{margin:0 0 25px;padding:14px 18px;background:#ecebdc;border-left:3px solid #819364;border-radius:0 8px 8px 0;font-size:13px}
 .garden-promise-harvest strong{color:#334b31;font-weight:700}
-.story-copy .story-garden-note{display:flex;align-items:flex-start;gap:10px;margin:24px 0 0;padding:15px 18px;border:1px solid #82947170;border-radius:9px;background:#ffffff0b;color:#f0ead4;font-size:13px;line-height:1.6}
-.story-garden-note span{color:#e5d39d;flex:none;font-size:19px}
+
+
 .welcome-bottom{align-items:center}
 .idaho-origin-card{flex:0 0 215px;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;gap:5px;min-width:0;padding:16px 12px 19px;border:1px solid #dfdcc7;border-radius:12px;background:radial-gradient(ellipse at 45% 40%,#f1ecd8 0%,#eae8d8 80%);box-shadow:0 11px 28px #4e4b2e12,inset 0 2px 4px #ffffff99}
 .idaho-origin-card img{display:block;width:150px;height:auto;max-width:100%;filter:drop-shadow(0 4px 4px #48563c14)}
@@ -38,7 +38,7 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 .idaho-origin-card strong{font:600 19px/1.2 "Fraunces",Georgia,serif;letter-spacing:-.04em;color:#344831}
 .idaho-origin-place{font-size:10px;font-weight:800;letter-spacing:.16em;color:#7b815e}
 @media(max-width:600px){
-  .hero-copy>.garden-promise-hero{margin-top:16px;padding:9px 12px;font-size:11px;justify-content:center}
+  
   .garden-promise-harvest{margin-bottom:21px;padding:12px;font-size:12px;line-height:1.6}
   .welcome-bottom{display:flex;flex-direction:column;align-items:stretch;gap:24px}
   .idaho-origin-card{flex:none;width:100%;max-width:380px;align-self:center;display:grid;grid-template-columns:112px 1fr;grid-template-rows:1fr auto auto 1fr;column-gap:14px;row-gap:3px;text-align:left;min-height:174px;padding:12px 15px}
@@ -57,7 +57,7 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 .welcome-bottom{grid-column:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);align-items:center;gap:clamp(28px,6vw,100px);min-width:0}
 .welcome-intro{min-width:0;max-width:510px}
 .welcome-intro>p{font-size:clamp(16px,1.55vw,21px);line-height:1.8;color:#69735f;max-width:490px;margin:0}
-.welcome-signature{display:flex;align-items:center;gap:12px;margin-top:26px;padding-top:17px;border-top:1px solid #dedac5;color:#65734f;font-size:11px;font-weight:800;letter-spacing:.14em}
+
 .welcome-signature span{color:#aa6846;font-size:17px;line-height:1}
 .idaho-origin-card{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 165px;align-items:center;column-gap:10px;min-height:290px;width:100%;padding:30px 22px 28px 30px;border:1px solid #dfd7bb;border-radius:23px;text-align:left;background:linear-gradient(135deg,#fffdf4 0%,#f3eddc 49%,#e8e2cf 100%);box-shadow:0 19px 45px #35472f1b,inset 0 1px 0 #fffef8}
 .idaho-origin-card::before{content:"";position:absolute;inset:7px;border:1px solid #ffffff9c;border-radius:17px;pointer-events:none;z-index:-1}
@@ -90,7 +90,7 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
  .welcome-bottom{display:flex;flex-direction:column;align-items:stretch;gap:27px;min-width:0}
  .welcome-intro{max-width:none;width:100%}
  .welcome-intro>p{font-size:16px;line-height:1.75;max-width:none}
- .welcome-signature{font-size:9px;margin-top:20px;padding-top:14px}
+ 
  .idaho-origin-card{align-self:stretch;max-width:none;grid-template-columns:minmax(0,1fr) 128px;min-height:232px;padding:22px 18px 21px 23px;column-gap:5px;border-radius:19px}
  .idaho-origin-eyebrow{font-size:8px;letter-spacing:.08em}
  .idaho-card-copy>strong{font-size:clamp(27px,7vw,32px);margin-top:15px}
@@ -110,15 +110,15 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 /* Editorial cleanup: natural paper, straightforward provenance, no speckled textures or slogan marquee. */
 .announcement{display:flex;justify-content:center;gap:12px;align-items:center;padding-inline:16px;letter-spacing:.1em}
 .announcement-divider{height:12px;width:1px;background:#e0ddbf70}
-.farm-provenance{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px 28px;padding:15px 22px;background:#eae4d2;border-block:1px solid #d6d1bc;color:#59664c;font-size:10px;font-weight:700;line-height:1.45;letter-spacing:.11em;text-align:center}
-.farm-provenance span{white-space:normal}
-.farm-provenance span+span{position:relative}
+
+
+
 .hero-kicker{letter-spacing:.16em}
 .hero-copy>p:not(.garden-promise){text-wrap:pretty}
 .harvest-note{margin-top:30px;color:#656b5d;font-size:12px}
 @media(max-width:600px){
   .announcement{height:30px;gap:10px;font-size:9px;letter-spacing:.04em}
-  .farm-provenance{gap:5px 15px;padding:11px 16px;font-size:9px;letter-spacing:.06em}
+  
   .farm-provenance span:last-child{display:none}
   .hero-copy>p:not(.garden-promise){max-width:360px}
 }
