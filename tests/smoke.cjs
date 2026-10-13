@@ -40,6 +40,8 @@ const server=http.createServer((req,res)=>{
     assert.equal(await page.locator('.idaho-map-pin').count(),1);
     // The truck must roll across the farm scene without a bounce, at desktop and mobile scales.
     assert.equal(await page.locator('.farm-truck-svg .truck-wheel').count(),2);
+    assert.equal(await page.locator('.farm-drive .road-chicken').count(),0,'No chicken should overlap the driving truck');
+    assert((await page.locator('.little-chicken').count())>0,'The rest of the farm still has chickens');
     assert.equal(await page.locator('.idaho-map-pin').evaluate(el=>getComputedStyle(el,'::before').animationName),'none','Reduced motion should stop the map pulse');
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.waitForFunction(()=>!document.body.classList.contains('motion-paused'));
@@ -77,7 +79,21 @@ const server=http.createServer((req,res)=>{
       });
       assert(welcome.introRight-welcome.introLeft>=Math.min(width*.58,290),`Welcome text must not collapse at ${width}px`);
       assert(welcome.cardRight<=width+1,`Idaho card must fit viewport at ${width}px`);
-      if(width<=600)assert(welcome.cardTop>=welcome.introBottom,`Idaho card should follow text on mobile at ${width}px`);
+      if(width<=600){
+        assert(welcome.cardTop>=welcome.introBottom,`Idaho card should follow text on mobile at ${width}px`);
+        const idaho=await page.locator('.idaho-origin-card').evaluate(el=>{
+          const card=el.getBoundingClientRect(),map=el.querySelector('.idaho-map-art').getBoundingClientRect(),copy=el.querySelector('.idaho-card-copy').getBoundingClientRect();
+          return {height:card.height,cardBottom:card.bottom,mapTop:map.top,mapBottom:map.bottom,copyBottom:copy.bottom,mapLeft:map.left,mapRight:map.right,cardLeft:card.left,cardRight:card.right};
+        });
+        assert(idaho.height<445,`Idaho card should not stretch on mobile at ${width}px: ${JSON.stringify(idaho)}`);
+        assert(idaho.mapTop>=idaho.copyBottom-1,`Map should stack beneath the text at ${width}px`);
+        assert(idaho.mapBottom<=idaho.cardBottom+1 && idaho.mapLeft>=idaho.cardLeft && idaho.mapRight<=idaho.cardRight,`Map must fit inside the card at ${width}px`);
+        const seal=await page.locator('.harvest-seal').evaluate(el=>{
+          const a=el.getBoundingClientRect(),b=el.closest('.hero-scene').getBoundingClientRect();
+          return {center:(a.left+a.right)/2,artCenter:(b.left+b.right)/2};
+        });
+        assert(Math.abs(seal.center-seal.artCenter)<4,`In season seal should be centered at ${width}px`);
+      }
     }
     if(process.env.QA_SCREENSHOTS){
       await page.evaluate(async()=>{await Promise.all([...document.images].map(img=>{img.loading="eager";return img.decode().catch(()=>{});}));});
