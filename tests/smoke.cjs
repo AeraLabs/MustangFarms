@@ -22,6 +22,29 @@ const server=http.createServer((req,res)=>{
     await page.evaluate(()=>document.fonts.ready);
     await page.evaluate(async()=>{await Promise.all([...document.images].map(img=>{img.loading="eager";return img.decode();}));});
     assert.equal(await page.locator('.product-card').count(),8);
+    // The truck must roll across the farm scene without a bounce, at desktop and mobile scales.
+    assert.equal(await page.locator('.farm-truck-svg .truck-wheel').count(),2);
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    await page.waitForFunction(()=>!document.body.classList.contains('motion-paused'));
+    for(const width of [390,1440]){
+      await page.setViewportSize({width,height:900});
+      const truck=await page.locator('.truck-runway').evaluate(el=>{
+        const body=el.querySelector('.vintage-truck');
+        return {width:el.getBoundingClientRect().width,animation:getComputedStyle(el).animationName,
+          bodyAnimation:getComputedStyle(body).animationName,bodyScale:getComputedStyle(body).transform};
+      });
+      assert.equal(truck.animation,'truck-drive','Truck should travel horizontally');
+      assert.equal(truck.bodyAnimation,'none','Truck body must not bounce');
+      assert(Math.abs(truck.width-(width<=720?259.2:360))<1,'Truck must have responsive width');
+      assert.notEqual(truck.bodyScale,'none','Truck art should retain its defined scale');
+      const start=await page.locator('.truck-runway').evaluate(el=>el.getBoundingClientRect().left);
+      await page.waitForTimeout(120);
+      const next=await page.locator('.truck-runway').evaluate(el=>el.getBoundingClientRect().left);
+      assert(next>start,'Truck must steadily drive from left to right');
+    }
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>document.body.classList.contains('motion-paused'));
+    assert.equal(await page.locator('.truck-runway').evaluate(el=>getComputedStyle(el).animationName),'none','Reduced-motion truck must remain still');
     for(const width of [320,390,768,1440]){
       await page.setViewportSize({width,height:900});
       await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));

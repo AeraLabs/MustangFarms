@@ -232,11 +232,13 @@ h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.054em}
 .drive-barn:after{content:"X";position:absolute;bottom:0;left:28px;background:#ecd6ad;color:#a9543b;width:36px;height:50px;font:bold 34px/50px Arial,sans-serif;text-align:center}
 .drive-fence{position:absolute;left:0;right:0;bottom:0;height:32px;background:repeating-linear-gradient(to right,transparent 0px,transparent 60px,#fff4cd 62px,#fff4cd 70px,transparent 73px),linear-gradient(to bottom,transparent 7px,#fff4cd 8px,#fff4cd 14px,transparent 15px,#fff4cd 22px,#fff4cd 27px,transparent 28px);opacity:.8}
 .drive-road{position:absolute;bottom:0;width:100%;height:66px;background:#c6ab86;border-top:6px solid #c1bc79}
-.truck-runway{position:absolute;left:-400px;bottom:34px;width:360px;z-index:3;animation:truck-drive 19s linear infinite}
-.vintage-truck{width:360px;animation:truck-bump .55s ease-in-out infinite alternate}
+/* Translate the whole truck at constant speed; scale only the inner artwork so mobile stays proportional. */
+.truck-runway{--truck-scale:1;--truck-render-width:360px;--truck-render-height:174px;position:absolute;left:0;bottom:23px;width:var(--truck-render-width);height:var(--truck-render-height);z-index:3;pointer-events:none;animation:truck-drive 17s linear infinite;animation-delay:-5s;will-change:transform}
+.vintage-truck{width:360px;height:174px;transform:scale(var(--truck-scale));transform-origin:top left}
 .farm-truck-svg{display:block;width:100%;height:auto;filter:drop-shadow(4px 8px 2px #5c683326)}
-.truck-wheel{transform-box:fill-box;transform-origin:center;animation:truck-spin .7s linear infinite}
-@keyframes truck-drive{0%{transform:translateX(0)}100%{transform:translateX(calc(100vw + 500px))}}@keyframes truck-bump{to{transform:translateY(-3px)}}@keyframes truck-spin{to{transform:rotate(360deg)}}
+.truck-wheel{transform-box:fill-box;transform-origin:center;animation:truck-spin 1.65s linear infinite}
+@keyframes truck-drive{from{transform:translate3d(calc(-1 * var(--truck-render-width) - 16px),0,0)}to{transform:translate3d(calc(100vw + 16px),0,0)}}
+@keyframes truck-spin{to{transform:rotate(360deg)}}
 .road-chicken{position:absolute;z-index:4;bottom:40px;right:15%;font-size:40px;animation:peck .85s infinite alternate}.road-chicken-two{right:9%;font-size:27px;bottom:39px;animation-delay:-.3s}
 .drive-title{position:absolute;top:34px;left:50%;transform:translateX(-50%);text-align:center;color:#315838;z-index:2;white-space:nowrap;text-shadow:0 2px #eef3dd}
 .drive-title span{font-size:11px;font-weight:800;letter-spacing:.13em;display:block;margin-bottom:12px}.drive-title strong{font:600 clamp(23px,3vw,42px) "Fraunces",Georgia,serif;letter-spacing:-.05em}
@@ -249,5 +251,5 @@ h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.054em}
 .ed-photo-ribbon span{color:#ae4a2d}
 .ed-photo-bloom{position:absolute;z-index:4;font-size:75px;filter:drop-shadow(5px 9px 4px #2b381d44);animation:bob 6s ease-in-out infinite}.bloom-a{top:4%;right:-7%}.bloom-b{bottom:14%;left:-10%;animation-delay:-3s}
 .ed-photo-chicken{position:absolute;bottom:-28px;right:-37px;z-index:5;font-size:100px;animation:peck 1.4s ease-in-out infinite}
-@media(max-width:720px){.farm-drive{height:210px}.drive-title{top:17px}.drive-title span{font-size:8px}.truck-runway{bottom:18px}.vintage-truck{transform:scale(.7);transform-origin:bottom left}.road-chicken{right:9%;font-size:30px}.road-chicken-two{right:1%;font-size:20px}.drive-barn{left:3%;scale:.7;transform-origin:bottom left}.story-photo-scene{overflow:visible}.ed-photo-chicken{right:-17px;font-size:78px}.ed-photo-ribbon{font-size:9px;padding:12px}.ed-photo-bloom{font-size:50px}}
-@media(prefers-reduced-motion:reduce){.truck-runway{left:calc(50% - 180px);animation:none}.vintage-truck,.truck-wheel,.little-chicken,.road-chicken,.farm-cloud,.drive-cloud,.farm-sun,.drive-sun,.ed-photo-bloom,.ed-photo-chicken{animation:none!important}.little-chicken{left:auto;right:6%}.story-photo-scene:hover .ed-photo-mat{transform:rotate(-4deg)}}
+@media(max-width:720px){.farm-drive{height:210px}.drive-title{top:17px}.drive-title span{font-size:8px}.truck-runway{--truck-scale:.72;--truck-render-width:259.2px;--truck-render-height:125.28px;bottom:18px;animation-duration:13s;animation-delay:-5s}.truck-wheel{animation-duration:2.8s}.road-chicken{right:9%;font-size:30px}.road-chicken-two{right:1%;font-size:20px}.drive-barn{left:3%;scale:.7;transform-origin:bottom left}.story-photo-scene{overflow:visible}.ed-photo-chicken{right:-17px;font-size:78px}.ed-photo-ribbon{font-size:9px;padding:12px}.ed-photo-bloom{font-size:50px}}
+@media(prefers-reduced-motion:reduce){.truck-runway{left:50%;animation:none;transform:translateX(-50%)}.vintage-truck,.truck-wheel,.little-chicken,.road-chicken,.farm-cloud,.drive-cloud,.farm-sun,.drive-sun,.ed-photo-bloom,.ed-photo-chicken{animation:none!important}.little-chicken{left:auto;right:6%}.story-photo-scene:hover .ed-photo-mat{transform:rotate(-4deg)}}
