@@ -66,7 +66,7 @@ Then open \`http://localhost:8000\`.
 
 ## Added living homestead visuals
 
-- The prior `assets/ed-sperry.webp` is retained but damaged and undecodable; the Meet Ed section now uses a clean monogram placeholder pending permission to publish the original portrait.
+- Ed's original approved portrait appears in Meet Ed (`assets/ed-sperry.jpg`), replacing the damaged WebP. The photograph is preserved as supplied, without AI recreation.
 - A CSS/SVG vintage red Mustang Farms produce truck drives along the homestead road, alongside chickens, a barn, clouds, and animated sunshine.
 - More chickens walk through the hero. Motion automatically stops for users with reduced-motion preferences.
 - The storefront remains a same-tab, in-memory prototype with no persistence or authentication.
@@ -74,7 +74,7 @@ Then open \`http://localhost:8000\`.
 
 ## Homestead market redesign
 
-The original static storefront now has a cream, olive and terracotta identity, original SVG produce illustrations, a harvest basket hero, responsive product cards, illustrated chickens, and the existing red farm truck. The previous build's WebP portrait is damaged and undecodable. The existing file is retained, while a styled monogram placeholder avoids showing a broken image. Publishing the recovered original JPEG remains blocked pending explicit permission to publish Ed's photo to this public repository. No Library-sourced photograph is included in this change.
+The original static storefront now has a cream, olive and terracotta identity, original SVG produce illustrations, a harvest basket hero, responsive product cards, illustrated chickens, and the existing red farm truck. Ed's original JPEG portrait replaces the damaged WebP following explicit permission to publish it in this public repository. The supplied photograph is unchanged.
 
 Shopping is nearer the top of the page, with search, category filters, in-stock filtering, availability labels, an accessible basket summary, and a pickup FAQ. Basket quantity edits preserve the test checkout details already entered. The Farmer's Desk has larger controls and text, order status filtering, and keyboard-accessible tabs. The basket traps focus and makes the background inert while open. Animation can be paused in the footer and respects reduced-motion settings.
 
