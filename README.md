@@ -66,7 +66,28 @@ Then open \`http://localhost:8000\`.
 
 ## Added living homestead visuals
 
-- Ed's supplied portrait in the Meet Ed section (optimized WebP under `assets/ed-sperry.webp`); preserve this photo as-is, rather than an AI recreation.
+- Ed's original approved portrait appears in Meet Ed (`assets/ed-sperry.jpg`), replacing the damaged WebP. The photograph is preserved as supplied, without AI recreation.
 - A CSS/SVG vintage red Mustang Farms produce truck drives along the homestead road, alongside chickens, a barn, clouds, and animated sunshine.
 - More chickens walk through the hero. Motion automatically stops for users with reduced-motion preferences.
 - The storefront remains a same-tab, in-memory prototype with no persistence or authentication.
+
+
+## Homestead market redesign
+
+The original static storefront now has a cream, olive and terracotta identity, original SVG produce illustrations, a harvest basket hero, responsive product cards, illustrated chickens, and the existing red farm truck. Ed's original JPEG portrait replaces the damaged WebP following explicit permission to publish it in this public repository. The supplied photograph is unchanged.
+
+Shopping is nearer the top of the page, with search, category filters, in-stock filtering, availability labels, an accessible basket summary, and a pickup FAQ. Basket quantity edits preserve the test checkout details already entered. The Farmer's Desk has larger controls and text, order status filtering, and keyboard-accessible tabs. The basket traps focus and makes the background inert while open. Animation can be paused in the footer and respects reduced-motion settings.
+
+Everything remains in memory. There are still no dependencies for running the website, no storage, no authentication, no payments, and no real orders or notifications.
+
+### Developer verification
+
+`tests/smoke.cjs` uses Playwright (a development-only tool). With Playwright and its Chromium browser installed in your development environment, run:
+
+```sh
+node tests/smoke.cjs
+```
+
+The script starts a temporary local server and verifies image decoding, layouts at 320/390/768/1440 pixels, search and category filters, basket totals, focus containment, checkout draft preservation, test-order creation and all order stages, inventory updates, adding produce, stock filtering, page-refresh reset, reduced motion, and browser runtime errors. `CHROMIUM_PATH` optionally selects an existing Chromium executable; `QA_SCREENSHOTS` optionally selects an existing directory for internal visual checks.
+
+Additional files: `homestead.css` supplies the redesign, and `assets/*.svg` contains the small, local illustrations. No paid services or third-party image hosts were introduced.
