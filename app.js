@@ -27,13 +27,13 @@ const statusNames={new:"New",preparing:"Preparing",ready:"Ready for pickup",comp
 function toast(message){const box=$("#toast");box.textContent=message;box.classList.add("visible");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>box.classList.remove("visible"),3200)}
 function renderProducts(){
   const shown=products.filter(p=>p.visible&&(activeFilter==="All"||p.category===activeFilter)&&(!availableOnly||p.stock>0)&&(`${p.name} ${p.description} ${p.category}`.toLowerCase().includes(searchQuery)));
-  $("#results-count").textContent=`${shown.length} ${shown.length===1?"good thing":"good things"} from the garden · sample harvest`;
+  $("#results-count").textContent=`${shown.length} ${shown.length===1?"item":"items"} shown · example listings`;
   $("#product-grid").innerHTML=shown.length?shown.map((p,index)=>`
   <article class="product-card" style="animation-delay:${Math.min(index*40,240)}ms">
     <div class="product-art ${color(p.color)}"><span class="product-tag ${p.stock===0?"sold-out-tag":""}">${p.stock===0?"Back another day":p.stock<=6?"Small harvest":"FROM THE GARDEN"}</span>${productArt[p.id]&&p.emoji===originalEmojis[p.id]?`<img class="produce-illustration" src="./assets/${productArt[p.id]}.svg" alt="" width="220" height="220" loading="lazy" />`:`<span class="product-emoji" aria-hidden="true">${safe(p.emoji)}</span>`}</div>
     <div class="product-info"><span class="product-category">${safe(p.category)}</span><h3>${safe(p.name)}</h3><p class="product-description">${safe(p.description)}</p>
     <p class="stock-label">${p.stock>0?`${p.stock} available`:"Currently sold out"}${cart[p.id]?` · ${cart[p.id]} in your basket`:""}</p><div class="product-bottom"><span class="product-price">${money(p.price)}<small>per ${safe(p.unit)}</small></span><button type="button" class="add-to-cart" data-add="${p.id}" ${p.stock<=0||(cart[p.id]??0)>=p.stock?"disabled":""} aria-label="Add ${safe(p.name)} to basket">${p.stock===0?"Sold out":(cart[p.id]??0)>=p.stock?"All added":"+ Add"}</button></div></div>
-  </article>`).join(""):`<div class="empty-filter">🌱<br/>No produce matches just yet.<br/>Try a different search or category. <button type="button" class="button button-outline" data-clear-filters>Clear filters</button></div>`;
+  </article>`).join(""):`<div class="empty-filter">🌱<br/>No matches in the garden listings.<br/>Try a different search or category. <button type="button" class="button button-outline" data-clear-filters>Clear filters</button></div>`;
 }
 function reconcileCart(){for(const [id,quantity] of Object.entries(cart)){const p=getProduct(id);if(!p||!p.visible||p.stock<1)delete cart[id];else cart[id]=Math.min(quantity,p.stock)}$("#cart-count").textContent=count();
   $("#cart-trigger").setAttribute("aria-label",`Open basket, ${count()} items`);
@@ -49,10 +49,10 @@ function renderCart(){
   reconcileCart();const body=$("#cart-body");
   if(checkoutConfirmed){body.innerHTML=`<div class="order-success"><span>🌻</span><h3 tabindex="-1" id="order-success-title">Your test order is in!</h3><p>Your <strong>test request</strong> is now visible in the demo Farmer's Desk. Nothing was sent to the farm, and no pickup has been scheduled.</p><div class="order-reference">${safe(orders[0]?.id??"DEMO")}</div><button type="button" class="button button-forest" data-close-cart>Keep exploring →</button></div>`;return}
   const entries=Object.entries(cart).map(([id,qty])=>({p:getProduct(id),qty})).filter(item=>item.p);
-  if(!entries.length){body.innerHTML=`<div class="cart-empty"><span>🧺</span><h3>Your basket's empty.</h3><p>There's something good growing here. Come see what we've picked!</p><button type="button" class="button button-forest" data-close-cart>Explore the harvest →</button></div>`;return}
+  if(!entries.length){body.innerHTML=`<div class="cart-empty"><span>🧺</span><h3>Your basket's empty.</h3><p>Take a look through the produce listings and add a few items to try the basket.</p><button type="button" class="button button-forest" data-close-cart>Explore the harvest →</button></div>`;return}
   body.innerHTML=`<div class="cart-items">${entries.map(({p,qty})=>`<div class="cart-item"><div class="cart-item-icon" aria-hidden="true">${safe(p.emoji)}</div><div class="cart-item-info"><h3>${safe(p.name)}</h3><small>${money(p.price)} per ${safe(p.unit)}</small><span class="cart-item-price">${money(p.price*qty)}</span></div><div class="quantity-stepper"><button data-cart-adjust="${p.id}" data-delta="-1" type="button" aria-label="Remove one ${safe(p.name)}">−</button><strong>${qty}</strong><button data-cart-adjust="${p.id}" data-delta="1" type="button" ${qty>=p.stock?"disabled":""} aria-label="Add one ${safe(p.name)}">+</button></div></div>`).join("")}</div>
     <div class="cart-total"><span>Estimated total</span><strong>${money(total())}</strong></div>
-    <p class="cart-note">Pickup requests only. No payment is collected online. Prices and products are examples until Ed publishes his real inventory.</p>
+    <p class="cart-note">Example products and prices. This basket is for trying out the ordering flow only; no pickup is scheduled and no payment is taken.</p>
     <h3 class="checkout-heading">Request a pickup</h3>
     <form class="checkout-form" id="checkout-form">
       <label>Your name<input name="name" maxlength="80" placeholder="Sample name" autocomplete="name" required /></label>

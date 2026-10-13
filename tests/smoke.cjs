@@ -22,6 +22,12 @@ const server=http.createServer((req,res)=>{
     await page.evaluate(()=>document.fonts.ready);
     await page.evaluate(async()=>{await Promise.all([...document.images].map(img=>{img.loading="eager";return img.decode();}));});
     assert.equal(await page.locator('.product-card').count(),8);
+    // Public storefront should look complete while clearly identifying non-live orders.
+    assert.equal(await page.locator('.hero-grain,.preview-note,.harvest-ribbon').count(),0);
+    assert.equal(await page.locator('.farm-provenance span').count(),3);
+    assert.match(await page.locator('.harvest-note').innerText(),/pickup orders aren't open yet/i);
+    assert.match(await page.locator('.faq-list').innerText(),/not sent to Ed/i);
+    assert.match(await page.locator('.story-copy').innerText(),/22 years in the military/i);
     // Farm-practice reminders and Idaho identity must remain visible and accessible.
     assert.equal(await page.locator('.garden-promise').count(),2);
     assert.equal(await page.locator('.story-garden-note').count(),1);
@@ -61,6 +67,7 @@ const server=http.createServer((req,res)=>{
       await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
       const overflow=await page.evaluate(()=>[...document.querySelectorAll("body *")].filter(el=>el.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(el).position!=="fixed").map(el=>({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right})));
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`No overflow at ${width}px: ${JSON.stringify(overflow)}`);
+      assert(await page.locator('.farm-provenance').isVisible(),`Provenance strip should be visible at ${width}px`);
       const welcome=await page.evaluate(()=>{
         const intro=document.querySelector('.welcome-intro').getBoundingClientRect();
         const card=document.querySelector('.idaho-origin-card').getBoundingClientRect();

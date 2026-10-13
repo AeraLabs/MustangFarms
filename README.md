@@ -12,6 +12,7 @@ A playful, responsive homestead website and pickup-order **front-end demonstrati
 - Order stages: **New → Preparing → Ready for pickup → Completed**
 - Placeholder logo, product art, farm illustration, sample produce, and sample pricing ready to replace with approved branding, photos, and actual inventory
 - Warm, understated reminders of the farm's stated organically grown/no-pesticide practices (hero, harvest and Ed's story), plus a lightweight embossed Idaho vector with a Meridian location marker
+- A pared-back editorial storefront: no dotted background texture, repeated animated slogan banner, or site-construction marketing copy; clear demo-order disclosures remain in the harvest, FAQ, basket and Farmer's Desk
 
 ## Important: this is not a live ordering site yet
 
