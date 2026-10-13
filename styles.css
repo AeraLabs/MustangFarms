@@ -210,3 +210,44 @@ h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.054em}
   .cart-button{font-size:11px;padding:9px 8px 9px 12px}
   .cart-count{width:23px;height:23px}
 }
+
+
+/* Living homestead: accessible, low-weight CSS motion and hand-drawn truck */
+.hero-farm-motion{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.little-chicken{position:absolute;bottom:62px;font-size:35px;filter:drop-shadow(2px 4px 2px #0d2817a6);animation:chicken-walk 16s linear infinite,peck 1.1s ease-in-out infinite}
+.chicken-a{left:-12%;animation-delay:-2s,0s}.chicken-b{left:-14%;font-size:24px;animation-delay:-8s,-.4s}.chicken-c{left:-12%;font-size:38px;animation-delay:-13s,-.7s}
+.farm-cloud{position:absolute;background:#eaf6d9;width:77px;height:22px;opacity:.25;border-radius:40px;animation:cloud-drift 28s ease-in-out infinite alternate}
+.farm-cloud:before,.farm-cloud:after,.drive-cloud:before,.drive-cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}
+.farm-cloud:before{width:33px;height:34px;left:15px;bottom:4px}.farm-cloud:after{width:27px;height:29px;right:12px;bottom:4px}
+.cloud-a{top:8%;left:35%}.cloud-b{top:23%;left:72%;animation-delay:-15s;scale:.8}.farm-sun{position:absolute;right:4%;top:6%;font-size:48px;color:#e6bc62;opacity:.65;animation:sun-shimmer 8s ease-in-out infinite}
+@keyframes chicken-walk{0%{left:-12%}100%{left:112%}}@keyframes peck{0%,100%{translate:0 0}45%{translate:0 4px}}@keyframes cloud-drift{to{transform:translateX(60px)}}@keyframes sun-shimmer{50%{transform:rotate(25deg);opacity:1}}
+.farm-drive{position:relative;height:260px;background:linear-gradient(#dfeec4 0%,#ecf1d1 65%,#b6cc89 65%);overflow:hidden;isolation:isolate;border-block:5px solid #e1e9c4}
+.drive-sun{position:absolute;top:19px;right:15%;font-size:72px;color:#dfa942;animation:sun-shimmer 18s ease-in-out infinite}
+.drive-cloud{position:absolute;width:125px;height:27px;background:#fffbea;border-radius:50px;opacity:.8;top:52px;animation:cloud-drift 25s ease-in-out infinite alternate}
+.drive-cloud:before{width:58px;height:40px;bottom:7px;left:16px}.drive-cloud:after{width:45px;height:34px;bottom:6px;right:15px}
+.cloud-1{left:7%}.cloud-2{left:58%;top:35px;scale:.75;animation-delay:-12s}
+.drive-background{position:absolute;bottom:66px;left:0;right:0;height:80px}
+.drive-barn{position:absolute;left:10%;bottom:-6px;width:100px;height:90px;font-size:0;background:#c45a3d;border:6px solid #f0daba;border-top:none;opacity:.75}
+.drive-barn:before{content:"";position:absolute;left:-15px;top:-37px;border-left:61px solid transparent;border-right:61px solid transparent;border-bottom:42px solid #984b34}
+.drive-barn:after{content:"X";position:absolute;bottom:0;left:28px;background:#ecd6ad;color:#a9543b;width:36px;height:50px;font:bold 34px/50px Arial,sans-serif;text-align:center}
+.drive-fence{position:absolute;left:0;right:0;bottom:0;height:32px;background:repeating-linear-gradient(to right,transparent 0px,transparent 60px,#fff4cd 62px,#fff4cd 70px,transparent 73px),linear-gradient(to bottom,transparent 7px,#fff4cd 8px,#fff4cd 14px,transparent 15px,#fff4cd 22px,#fff4cd 27px,transparent 28px);opacity:.8}
+.drive-road{position:absolute;bottom:0;width:100%;height:66px;background:#c6ab86;border-top:6px solid #c1bc79}
+.truck-runway{position:absolute;left:-400px;bottom:34px;width:360px;z-index:3;animation:truck-drive 19s linear infinite}
+.vintage-truck{width:360px;animation:truck-bump .55s ease-in-out infinite alternate}
+.farm-truck-svg{display:block;width:100%;height:auto;filter:drop-shadow(4px 8px 2px #5c683326)}
+.truck-wheel{transform-box:fill-box;transform-origin:center;animation:truck-spin .7s linear infinite}
+@keyframes truck-drive{0%{transform:translateX(0)}100%{transform:translateX(calc(100vw + 500px))}}@keyframes truck-bump{to{transform:translateY(-3px)}}@keyframes truck-spin{to{transform:rotate(360deg)}}
+.road-chicken{position:absolute;z-index:4;bottom:40px;right:15%;font-size:40px;animation:peck .85s infinite alternate}.road-chicken-two{right:9%;font-size:27px;bottom:39px;animation-delay:-.3s}
+.drive-title{position:absolute;top:34px;left:50%;transform:translateX(-50%);text-align:center;color:#315838;z-index:2;white-space:nowrap;text-shadow:0 2px #eef3dd}
+.drive-title span{font-size:11px;font-weight:800;letter-spacing:.13em;display:block;margin-bottom:12px}.drive-title strong{font:600 clamp(23px,3vw,42px) "Fraunces",Georgia,serif;letter-spacing:-.05em}
+.story-photo-scene{background:radial-gradient(circle at 55% 34%,#f2d79d,#d1b679 66%,#9cae7c 100%);border:10px solid #eee1b8;box-shadow:0 0 0 1px #e3c98155,0 24px 60px #03170d59;overflow:visible;isolation:isolate;display:grid;place-items:center}
+.photo-glow{position:absolute;inset:15px;border:2px solid #fff3d56b;border-radius:inherit;pointer-events:none}
+.ed-photo-mat{position:relative;width:78%;height:80%;border:9px solid #fcf7e7;box-shadow:0 17px 45px #41392054;transform:rotate(-4deg);overflow:hidden;background:#131313;transition:transform .45s}
+.story-photo-scene:hover .ed-photo-mat{transform:rotate(-1deg) scale(1.025)}
+.ed-photo-mat img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.ed-photo-ribbon{position:absolute;bottom:11%;left:8%;z-index:5;background:#f6e7b5;color:#1d4e34;padding:14px 21px;transform:rotate(5deg);font-size:12px;font-weight:900;letter-spacing:.14em;box-shadow:3px 7px 0 #8d754338}
+.ed-photo-ribbon span{color:#ae4a2d}
+.ed-photo-bloom{position:absolute;z-index:4;font-size:75px;filter:drop-shadow(5px 9px 4px #2b381d44);animation:bob 6s ease-in-out infinite}.bloom-a{top:4%;right:-7%}.bloom-b{bottom:14%;left:-10%;animation-delay:-3s}
+.ed-photo-chicken{position:absolute;bottom:-28px;right:-37px;z-index:5;font-size:100px;animation:peck 1.4s ease-in-out infinite}
+@media(max-width:720px){.farm-drive{height:210px}.drive-title{top:17px}.drive-title span{font-size:8px}.truck-runway{bottom:18px}.vintage-truck{transform:scale(.7);transform-origin:bottom left}.road-chicken{right:9%;font-size:30px}.road-chicken-two{right:1%;font-size:20px}.drive-barn{left:3%;scale:.7;transform-origin:bottom left}.story-photo-scene{overflow:visible}.ed-photo-chicken{right:-17px;font-size:78px}.ed-photo-ribbon{font-size:9px;padding:12px}.ed-photo-bloom{font-size:50px}}
+@media(prefers-reduced-motion:reduce){.truck-runway{left:calc(50% - 180px);animation:none}.vintage-truck,.truck-wheel,.little-chicken,.road-chicken,.farm-cloud,.drive-cloud,.farm-sun,.drive-sun,.ed-photo-bloom,.ed-photo-chicken{animation:none!important}.little-chicken{left:auto;right:6%}.story-photo-scene:hover .ed-photo-mat{transform:rotate(-4deg)}}

@@ -63,3 +63,10 @@ Then open \`http://localhost:8000\`.
 4. Validate inventory reservation logic, customer privacy, cancellation/refund rules (if payments are added), spam defenses, and production accessibility.
 
 **Safety before launch:** Do not invite real customers to place orders through this demo. Deploy it only as a labeled prototype until authentication, shared inventory, and order delivery are implemented.
+
+## Added living homestead visuals
+
+- Ed's supplied portrait in the Meet Ed section (optimized WebP under `assets/ed-sperry.webp`); preserve this photo as-is, rather than an AI recreation.
+- A CSS/SVG vintage red Mustang Farms produce truck drives along the homestead road, alongside chickens, a barn, clouds, and animated sunshine.
+- More chickens walk through the hero. Motion automatically stops for users with reduced-motion preferences.
+- The storefront remains a same-tab, in-memory prototype with no persistence or authentication.
