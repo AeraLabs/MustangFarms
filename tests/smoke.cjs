@@ -28,11 +28,15 @@ const server=http.createServer((req,res)=>{
     assert.match(await page.locator('.garden-promise-hero').innerText(),/No pesticides used/);
     assert.match(await page.locator('.garden-promise-harvest').innerText(),/organically grown/);
     assert.equal(await page.locator('.idaho-origin-card img').getAttribute('src'),'./assets/idaho-outline.svg');
-    assert.match(await page.locator('.idaho-origin-card img').getAttribute('alt'),/Meridian/);
+    assert.equal(await page.locator('.idaho-origin-card img').getAttribute('alt'),'');
+    assert.match(await page.locator('.idaho-map-art').getAttribute('aria-label'),/Meridian/);
+    assert.equal(await page.locator('.idaho-map-pin').count(),1);
     // The truck must roll across the farm scene without a bounce, at desktop and mobile scales.
     assert.equal(await page.locator('.farm-truck-svg .truck-wheel').count(),2);
+    assert.equal(await page.locator('.idaho-map-pin').evaluate(el=>getComputedStyle(el,'::before').animationName),'none','Reduced motion should stop the map pulse');
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.waitForFunction(()=>!document.body.classList.contains('motion-paused'));
+    assert.equal(await page.locator('.idaho-map-pin').evaluate(el=>getComputedStyle(el,'::before').animationName),'meridian-pulse','The Meridian marker should gently pulse');
     for(const width of [390,1440]){
       await page.setViewportSize({width,height:900});
       const truck=await page.locator('.truck-runway').evaluate(el=>{
@@ -57,6 +61,15 @@ const server=http.createServer((req,res)=>{
       await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
       const overflow=await page.evaluate(()=>[...document.querySelectorAll("body *")].filter(el=>el.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(el).position!=="fixed").map(el=>({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right})));
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`No overflow at ${width}px: ${JSON.stringify(overflow)}`);
+      const welcome=await page.evaluate(()=>{
+        const intro=document.querySelector('.welcome-intro').getBoundingClientRect();
+        const card=document.querySelector('.idaho-origin-card').getBoundingClientRect();
+        const heading=document.querySelector('.welcome>h2').getBoundingClientRect();
+        return {introLeft:intro.left,introRight:intro.right,introBottom:intro.bottom,cardTop:card.top,cardRight:card.right,headingWidth:heading.width};
+      });
+      assert(welcome.introRight-welcome.introLeft>=Math.min(width*.58,290),`Welcome text must not collapse at ${width}px`);
+      assert(welcome.cardRight<=width+1,`Idaho card must fit viewport at ${width}px`);
+      if(width<=600)assert(welcome.cardTop>=welcome.introBottom,`Idaho card should follow text on mobile at ${width}px`);
     }
     if(process.env.QA_SCREENSHOTS){
       await page.evaluate(async()=>{await Promise.all([...document.images].map(img=>{img.loading="eager";return img.decode().catch(()=>{});}));});
