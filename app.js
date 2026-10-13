@@ -1,14 +1,14 @@
 "use strict";
 // Mustang Farms DEMO: in-memory only. No authentication, storage, network, or payments.
 let products=[
-{id:1,name:"Garden Tomatoes",category:"Vegetables",emoji:"🍅",price:4,unit:"basket",stock:14,color:"pink",description:"Sun-ripened and packed with summertime flavor.",visible:true},
-{id:2,name:"Sweet Carrots",category:"Vegetables",emoji:"🥕",price:3,unit:"bunch",stock:20,color:"orange",description:"Crisp, sweet and straight from the soil.",visible:true},
-{id:3,name:"Fresh Lettuce",category:"Vegetables",emoji:"🥬",price:3.5,unit:"head",stock:11,color:"green",description:"Tender, leafy greens for the freshest salads.",visible:true},
-{id:4,name:"Sweet Corn",category:"Vegetables",emoji:"🌽",price:5,unit:"half dozen",stock:18,color:"yellow",description:"A little sunshine in every golden ear.",visible:true},
-{id:5,name:"Crisp Apples",category:"Fruit",emoji:"🍎",price:5,unit:"bag",stock:8,color:"pink",description:"Crunchy, sweet, and made for sharing.",visible:true},
-{id:6,name:"Garden Peppers",category:"Vegetables",emoji:"🫑",price:3,unit:"pair",stock:9,color:"green",description:"Colorful, crisp, and full of garden goodness.",visible:true},
-{id:7,name:"Fresh Strawberries",category:"Fruit",emoji:"🍓",price:5.5,unit:"punnet",stock:6,color:"pink",description:"Little berries with big summer sweetness.",visible:true},
-{id:8,name:"Fragrant Basil",category:"Herbs",emoji:"🌿",price:2.5,unit:"bunch",stock:15,color:"purple",description:"The perfect finishing touch to a homemade meal.",visible:true}
+{id:1,name:"Garden Tomatoes",category:"Vegetables",emoji:"🍅",price:4,unit:"basket",stock:14,color:"pink",description:"Slice for sandwiches or toss into a simple salad.",visible:true},
+{id:2,name:"Sweet Carrots",category:"Vegetables",emoji:"🥕",price:3,unit:"bunch",stock:20,color:"orange",description:"Roast with olive oil or crunch them raw.",visible:true},
+{id:3,name:"Fresh Lettuce",category:"Vegetables",emoji:"🥬",price:3.5,unit:"head",stock:11,color:"green",description:"For a quick salad or a little sandwich crunch.",visible:true},
+{id:4,name:"Sweet Corn",category:"Vegetables",emoji:"🌽",price:5,unit:"half dozen",stock:18,color:"yellow",description:"Good on the grill with a little butter and salt.",visible:true},
+{id:5,name:"Crisp Apples",category:"Fruit",emoji:"🍎",price:5,unit:"bag",stock:8,color:"pink",description:"Pack one for later or bake a small crumble.",visible:true},
+{id:6,name:"Garden Peppers",category:"Vegetables",emoji:"🫑",price:3,unit:"pair",stock:9,color:"green",description:"Chop for fajitas, stuff, or eat by the slice.",visible:true},
+{id:7,name:"Fresh Strawberries",category:"Fruit",emoji:"🍓",price:5.5,unit:"punnet",stock:6,color:"pink",description:"Spoon over yogurt or enjoy by the handful.",visible:true},
+{id:8,name:"Fragrant Basil",category:"Herbs",emoji:"🌿",price:2.5,unit:"bunch",stock:15,color:"purple",description:"Tear over tomatoes or blend into pesto.",visible:true}
 ];
 let checkoutDraft={};
 let searchQuery="", availableOnly=false, orderFilter="all";
@@ -30,10 +30,10 @@ function renderProducts(){
   $("#results-count").textContent=`${shown.length} ${shown.length===1?"item":"items"} shown · example listings`;
   $("#product-grid").innerHTML=shown.length?shown.map((p,index)=>`
   <article class="product-card" style="animation-delay:${Math.min(index*40,240)}ms">
-    <div class="product-art ${color(p.color)}"><span class="product-tag ${p.stock===0?"sold-out-tag":""}">${p.stock===0?"Back another day":p.stock<=6?"Small harvest":"FROM THE GARDEN"}</span>${productArt[p.id]&&p.emoji===originalEmojis[p.id]?`<img class="produce-illustration" src="./assets/${productArt[p.id]}.svg" alt="" width="220" height="220" loading="lazy" />`:`<span class="product-emoji" aria-hidden="true">${safe(p.emoji)}</span>`}</div>
+    <div class="product-art ${color(p.color)}"><span class="product-tag ${p.stock===0?"sold-out-tag":""}">${p.stock===0?"Sold out":p.stock<=6?"Limited quantity":""}</span>${productArt[p.id]&&p.emoji===originalEmojis[p.id]?`<img class="produce-illustration" src="./assets/${productArt[p.id]}.svg" alt="" width="220" height="220" loading="lazy" />`:`<span class="product-emoji" aria-hidden="true">${safe(p.emoji)}</span>`}</div>
     <div class="product-info"><span class="product-category">${safe(p.category)}</span><h3>${safe(p.name)}</h3><p class="product-description">${safe(p.description)}</p>
     <p class="stock-label">${p.stock>0?`${p.stock} available`:"Currently sold out"}${cart[p.id]?` · ${cart[p.id]} in your basket`:""}</p><div class="product-bottom"><span class="product-price">${money(p.price)}<small>per ${safe(p.unit)}</small></span><button type="button" class="add-to-cart" data-add="${p.id}" ${p.stock<=0||(cart[p.id]??0)>=p.stock?"disabled":""} aria-label="Add ${safe(p.name)} to basket">${p.stock===0?"Sold out":(cart[p.id]??0)>=p.stock?"All added":"+ Add"}</button></div></div>
-  </article>`).join(""):`<div class="empty-filter">🌱<br/>No matches in the garden listings.<br/>Try a different search or category. <button type="button" class="button button-outline" data-clear-filters>Clear filters</button></div>`;
+  </article>`).join(""):`<div class="empty-filter">🌱<br/>No produce matches your search.<br/>Try a different search or category. <button type="button" class="button button-outline" data-clear-filters>Clear filters</button></div>`;
 }
 function reconcileCart(){for(const [id,quantity] of Object.entries(cart)){const p=getProduct(id);if(!p||!p.visible||p.stock<1)delete cart[id];else cart[id]=Math.min(quantity,p.stock)}$("#cart-count").textContent=count();
   $("#cart-trigger").setAttribute("aria-label",`Open basket, ${count()} items`);
@@ -49,16 +49,16 @@ function renderCart(){
   reconcileCart();const body=$("#cart-body");
   if(checkoutConfirmed){body.innerHTML=`<div class="order-success"><span>🌻</span><h3 tabindex="-1" id="order-success-title">Your test order is in!</h3><p>Your <strong>test request</strong> is now visible in the demo Farmer's Desk. Nothing was sent to the farm, and no pickup has been scheduled.</p><div class="order-reference">${safe(orders[0]?.id??"DEMO")}</div><button type="button" class="button button-forest" data-close-cart>Keep exploring →</button></div>`;return}
   const entries=Object.entries(cart).map(([id,qty])=>({p:getProduct(id),qty})).filter(item=>item.p);
-  if(!entries.length){body.innerHTML=`<div class="cart-empty"><span>🧺</span><h3>Your basket's empty.</h3><p>Take a look through the produce listings and add a few items to try the basket.</p><button type="button" class="button button-forest" data-close-cart>Explore the harvest →</button></div>`;return}
+  if(!entries.length){body.innerHTML=`<div class="cart-empty"><span>🧺</span><h3>Your basket's empty.</h3><p>Take a look through the produce listings and add a few items to try the basket.</p><button type="button" class="button button-forest" data-close-cart>Back to browsing →</button></div>`;return}
   body.innerHTML=`<div class="cart-items">${entries.map(({p,qty})=>`<div class="cart-item"><div class="cart-item-icon" aria-hidden="true">${safe(p.emoji)}</div><div class="cart-item-info"><h3>${safe(p.name)}</h3><small>${money(p.price)} per ${safe(p.unit)}</small><span class="cart-item-price">${money(p.price*qty)}</span></div><div class="quantity-stepper"><button data-cart-adjust="${p.id}" data-delta="-1" type="button" aria-label="Remove one ${safe(p.name)}">−</button><strong>${qty}</strong><button data-cart-adjust="${p.id}" data-delta="1" type="button" ${qty>=p.stock?"disabled":""} aria-label="Add one ${safe(p.name)}">+</button></div></div>`).join("")}</div>
     <div class="cart-total"><span>Estimated total</span><strong>${money(total())}</strong></div>
     <p class="cart-note">Example products and prices. This basket is for trying out the ordering flow only; no pickup is scheduled and no payment is taken.</p>
-    <h3 class="checkout-heading">Request a pickup</h3>
+    <h3 class="checkout-heading">Try a pickup request</h3>
     <form class="checkout-form" id="checkout-form">
       <label>Your name<input name="name" maxlength="80" placeholder="Sample name" autocomplete="name" required /></label>
       <label>Phone number<input name="phone" maxlength="30" type="tel" placeholder="Sample phone number" autocomplete="tel" required /></label>
       <label>Preferred pickup time<select name="pickup" required><option value="Flexible / arrange with farm">I'm flexible</option><option value="Weekday morning">Weekday morning</option><option value="Weekday afternoon">Weekday afternoon</option><option value="Weekend">Weekend</option></select></label>
-      <label>Anything Ed should know? (optional)<textarea name="notes" maxlength="500" rows="3" placeholder="A note for the farmer..."></textarea></label>
+      <label>Pickup notes (optional)<textarea name="notes" maxlength="500" rows="3" placeholder="Anything we should know?"></textarea></label>
       <p class="checkout-hint">DEMO ONLY — Test with sample details, not real personal information. This request only appears in this browser tab until you refresh.</p>
       <button class="button button-forest checkout-submit" type="submit">Place TEST pickup request →</button>
     </form>`;

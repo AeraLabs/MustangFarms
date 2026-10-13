@@ -26,7 +26,7 @@ const server=http.createServer((req,res)=>{
     assert.equal(await page.locator('.hero-grain,.preview-note,.harvest-ribbon').count(),0);
     assert.equal(await page.locator('.farm-provenance,.hero-footer').count(),0);
     assert.match(await page.locator('.harvest-note').innerText(),/pickup orders aren't open yet/i);
-    assert.match(await page.locator('.faq-list').innerText(),/not sent to Ed/i);
+    assert.match(await page.locator('.faq-list').textContent(),/not sent to the farm/i);
     assert.match(await page.locator('.story-copy').innerText(),/22 years in the military/i);
     // The growing-practices message belongs in the harvest, not on every banner.
     assert.equal(await page.locator('.garden-promise').count(),1);
@@ -102,12 +102,13 @@ const server=http.createServer((req,res)=>{
           return {center:(a.left+a.right)/2,artCenter:(b.left+b.right)/2,
             left:a.left,right:a.right,top:a.top,bottom:a.bottom,
             textFits:spans.every(span=>span.scrollWidth<=span.clientWidth+1),
+            lines:spans.map(span=>({text:span.textContent,width:span.clientWidth,scroll:span.scrollWidth})),
             mainFont:parseFloat(getComputedStyle(el.querySelector('.harvest-seal-main')).fontSize),
             subtitleFont:parseFloat(getComputedStyle(el.querySelector('.harvest-seal-bottom')).fontSize)};
         });
         assert(Math.abs(seal.center-seal.artCenter)<4,`In season seal should be centered at ${width}px`);
         assert(seal.left>=0 && seal.right<=width,`Season seal must stay within the viewport at ${width}px`);
-        assert(seal.textFits,`Every season seal line must fit inside its circle at ${width}px`);
+        assert(seal.textFits,`Every season seal line must fit inside its circle at ${width}px: ${JSON.stringify(seal.lines)}`);
         assert(seal.mainFont>seal.subtitleFont+6,`Season heading must stay more prominent than its subtitle at ${width}px`);
       }
     }
