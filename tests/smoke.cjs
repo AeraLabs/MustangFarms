@@ -65,7 +65,7 @@ const server=http.createServer((req,res)=>{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.body.classList.contains('motion-paused'));
     assert.equal(await page.locator('.truck-runway').evaluate(el=>getComputedStyle(el).animationName),'none','Reduced-motion truck must remain still');
-    for(const width of [320,390,768,1440]){
+    for(const width of [320,360,390,430,768,1440]){
       await page.setViewportSize({width,height:900});
       await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
       const overflow=await page.evaluate(()=>[...document.querySelectorAll("body *")].filter(el=>el.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(el).position!=="fixed").map(el=>({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right})));
@@ -83,16 +83,32 @@ const server=http.createServer((req,res)=>{
         assert(welcome.cardTop>=welcome.introBottom,`Idaho card should follow text on mobile at ${width}px`);
         const idaho=await page.locator('.idaho-origin-card').evaluate(el=>{
           const card=el.getBoundingClientRect(),map=el.querySelector('.idaho-map-art').getBoundingClientRect(),copy=el.querySelector('.idaho-card-copy').getBoundingClientRect();
-          return {height:card.height,cardBottom:card.bottom,mapTop:map.top,mapBottom:map.bottom,copyBottom:copy.bottom,mapLeft:map.left,mapRight:map.right,cardLeft:card.left,cardRight:card.right};
+          const style=getComputedStyle(el);
+          const inset=['paddingTop','paddingBottom','borderTopWidth','borderBottomWidth'].reduce((sum,prop)=>sum+parseFloat(style[prop]),0);
+          return {height:card.height,emptyHeight:card.height-inset-Math.max(copy.height,map.height),
+            cardTop:card.top,cardBottom:card.bottom,mapTop:map.top,mapBottom:map.bottom,
+            mapLeft:map.left,mapRight:map.right,copyRight:copy.right,
+            cardLeft:card.left,cardRight:card.right,copyFits:el.querySelector('.idaho-card-copy').scrollWidth<=el.querySelector('.idaho-card-copy').clientWidth+1};
         });
-        assert(idaho.height<445,`Idaho card should not stretch on mobile at ${width}px: ${JSON.stringify(idaho)}`);
-        assert(idaho.mapTop>=idaho.copyBottom-1,`Map should stack beneath the text at ${width}px`);
-        assert(idaho.mapBottom<=idaho.cardBottom+1 && idaho.mapLeft>=idaho.cardLeft && idaho.mapRight<=idaho.cardRight,`Map must fit inside the card at ${width}px`);
+        assert(idaho.height<300,`Idaho card should be compact at ${width}px: ${JSON.stringify(idaho)}`);
+        assert(Math.abs(idaho.emptyHeight)<12,`Idaho card must follow content, not leave an empty grid row, at ${width}px: ${JSON.stringify(idaho)}`);
+        assert(idaho.mapLeft>=idaho.copyRight+4,`Idaho art must sit beside the copy with spacing at ${width}px`);
+        assert(idaho.copyFits,`Idaho description and location must fit the copy column at ${width}px`);
+        assert(idaho.mapBottom<=idaho.cardBottom+1 && idaho.mapTop>=idaho.cardTop-1 &&
+          idaho.mapLeft>=idaho.cardLeft && idaho.mapRight<=idaho.cardRight,`Map must fit inside the card at ${width}px`);
         const seal=await page.locator('.harvest-seal').evaluate(el=>{
           const a=el.getBoundingClientRect(),b=el.closest('.hero-scene').getBoundingClientRect();
-          return {center:(a.left+a.right)/2,artCenter:(b.left+b.right)/2};
+          const spans=[...el.children];
+          return {center:(a.left+a.right)/2,artCenter:(b.left+b.right)/2,
+            left:a.left,right:a.right,top:a.top,bottom:a.bottom,
+            textFits:spans.every(span=>span.scrollWidth<=span.clientWidth+1),
+            mainFont:parseFloat(getComputedStyle(el.querySelector('.harvest-seal-main')).fontSize),
+            subtitleFont:parseFloat(getComputedStyle(el.querySelector('.harvest-seal-bottom')).fontSize)};
         });
         assert(Math.abs(seal.center-seal.artCenter)<4,`In season seal should be centered at ${width}px`);
+        assert(seal.left>=0 && seal.right<=width,`Season seal must stay within the viewport at ${width}px`);
+        assert(seal.textFits,`Every season seal line must fit inside its circle at ${width}px`);
+        assert(seal.mainFont>seal.subtitleFont+6,`Season heading must stay more prominent than its subtitle at ${width}px`);
       }
     }
     if(process.env.QA_SCREENSHOTS){

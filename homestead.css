@@ -41,7 +41,7 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 .welcome-intro{min-width:0;max-width:510px}
 .welcome-intro>p{font-size:clamp(16px,1.55vw,21px);line-height:1.8;color:#69735f;max-width:490px;margin:0}
 
-.idaho-origin-card{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 165px;align-items:center;column-gap:10px;min-height:290px;width:100%;padding:30px 22px 28px 30px;border:1px solid #dfd7bb;border-radius:23px;text-align:left;background:linear-gradient(135deg,#fffdf4 0%,#f3eddc 49%,#e8e2cf 100%);box-shadow:0 19px 45px #35472f1b,inset 0 1px 0 #fffef8}
+.idaho-origin-card{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 165px;align-items:center;column-gap:10px;width:100%;padding:30px 22px 28px 30px;border:1px solid #dfd7bb;border-radius:23px;text-align:left;background:linear-gradient(135deg,#fffdf4 0%,#f3eddc 49%,#e8e2cf 100%);box-shadow:0 19px 45px #35472f1b,inset 0 1px 0 #fffef8}
 .idaho-origin-card::before{content:"";position:absolute;inset:7px;border:1px solid #ffffff9c;border-radius:17px;pointer-events:none;z-index:-1}
 .idaho-origin-card::after{content:"";position:absolute;top:-85px;right:-70px;width:250px;height:250px;background:radial-gradient(circle,#ffffffbf 0%,#ffffff00 67%);pointer-events:none;z-index:-1}
 .idaho-card-copy{display:flex;flex-direction:column;align-items:flex-start;gap:0;min-width:0;z-index:1}
@@ -61,7 +61,7 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
 @media(max-width:800px){
  .welcome{display:grid;grid-template-columns:minmax(0,1fr)}
  .welcome-bottom{grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:26px}
- .idaho-origin-card{grid-template-columns:minmax(0,1fr) 125px;padding:23px 16px 23px 21px;min-height:245px}
+ .idaho-origin-card{grid-template-columns:minmax(0,1fr) 125px;padding:23px 16px 23px 21px}
  .idaho-map-art{max-width:125px}
  .idaho-card-copy>strong{font-size:28px}
 }
@@ -73,18 +73,17 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
  .welcome-intro{max-width:none;width:100%}
  .welcome-intro>p{font-size:16px;line-height:1.75;max-width:none}
  
- .idaho-origin-card{align-self:center;max-width:420px;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;grid-auto-rows:min-content;align-items:start;justify-items:center;gap:16px;min-height:0;padding:25px 22px 24px;border-radius:19px}
- .idaho-card-copy{width:100%;grid-column:1;grid-row:1}
- .idaho-origin-eyebrow{font-size:9px;letter-spacing:.09em}
- .idaho-card-copy>strong{font-size:clamp(30px,8vw,36px);margin-top:12px}
+ .idaho-origin-card{align-self:center;max-width:420px;grid-template-columns:minmax(0,1fr) minmax(86px,37%);align-items:center;column-gap:clamp(8px,2.4vw,16px);min-height:0;height:auto;padding:20px 14px 20px 18px;border-radius:19px}
+ .idaho-card-copy{width:auto}
+ .idaho-origin-eyebrow{font-size:8px;letter-spacing:.04em;line-height:1.4}
+ .idaho-card-copy>strong{font-size:clamp(25px,7.5vw,32px);margin-top:12px}
  .idaho-card-copy>p{font-size:12px;margin:10px 0 13px}
- .idaho-origin-place{font-size:10px;letter-spacing:.075em}
- .idaho-map-art{width:160px;max-width:100%;grid-column:1;grid-row:2;justify-self:center}
+ .idaho-origin-place{font-size:9px;letter-spacing:.025em}
+ .idaho-map-art{width:100%;max-width:135px;justify-self:end}
 }
 @media(max-width:360px){
- .idaho-origin-card{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;padding:21px 18px 22px}
- .idaho-map-art{width:140px}
- .idaho-card-copy>strong{font-size:30px}
+ .idaho-origin-card{padding:18px 11px 18px 15px;grid-template-columns:minmax(0,1fr) minmax(82px,36%)}
+ .idaho-card-copy>strong{font-size:25px}
  .welcome>h2{font-size:38px}
 }
 @media(prefers-reduced-motion:reduce){.idaho-map-pin::before{animation:none;opacity:.35;transform:scale(.75)}}
@@ -106,31 +105,26 @@ body{font-size:16px}::selection{background:#e5d5a9;color:#293b2b}button,a,input,
   .hero-copy>p:not(.garden-promise){max-width:360px}
 }
 
-/* Circular harvest seal: centered lettering and controlled mobile placement. */
+/* Farm-stamp seal: one base style and one responsive scale, with no overflowing type. */
 .harvest-seal{
  position:absolute;z-index:4;top:7%;right:3%;width:122px;aspect-ratio:1;
  display:flex;flex-direction:column;align-items:center;justify-content:center;
- gap:5px;padding:16px 8px;box-sizing:border-box;text-align:center;border-radius:50%;
+ gap:4px;padding:12px;box-sizing:border-box;text-align:center;border-radius:50%;
  background:#a5442f;color:#fff2d6;border:1px dashed #f2d5a0;outline:5px solid #a5442f;
  transform:rotate(-6deg);box-shadow:0 7px 20px #3b342420;
 }
 .harvest-seal .harvest-seal-top,.harvest-seal .harvest-seal-bottom{
- display:block;width:100%;font:700 8px/1.2 "DM Sans",sans-serif;
- letter-spacing:.06em;text-align:center;white-space:nowrap;
+ display:block;width:100%;min-width:0;font:700 8px/1.15 "DM Sans",sans-serif;
+ letter-spacing:.035em;text-align:center;white-space:nowrap;
 }
 .harvest-seal .harvest-seal-main{
- display:block;width:100%;font:italic 600 25px/1.07 "Fraunces",Georgia,serif;
- letter-spacing:-.07em;text-align:center;white-space:nowrap;
-}
-@media(max-width:1100px){
- .harvest-seal{width:112px;gap:4px}
- .harvest-seal .harvest-seal-main{font-size:22px}
- .harvest-seal .harvest-seal-bottom{font-size:7px}
+ display:block;width:100%;min-width:0;font:italic 600 21px/1.1 "Fraunces",Georgia,serif;
+ letter-spacing:-.055em;text-align:center;white-space:nowrap;
 }
 @media(max-width:600px){
- .harvest-seal{top:2%;left:50%;right:auto;width:110px;gap:4px;
-   transform:translateX(-50%) rotate(-5deg);padding:13px 7px}
- .harvest-seal .harvest-seal-main{font-size:21px}
- .harvest-seal .harvest-seal-top,.harvest-seal .harvest-seal-bottom{font-size:7px}
+ .harvest-seal{top:2%;left:50%;right:auto;width:clamp(104px,29vw,118px);
+   gap:3px;padding:12px 9px;transform:translateX(-50%) rotate(-5deg)}
+ .harvest-seal .harvest-seal-main{font-size:clamp(17px,4.5vw,19px)}
+ .harvest-seal .harvest-seal-top,.harvest-seal .harvest-seal-bottom{font-size:7px;letter-spacing:.015em}
  .garden-promise-harvest{margin-bottom:21px;padding:12px;font-size:12px;line-height:1.6}
 }
